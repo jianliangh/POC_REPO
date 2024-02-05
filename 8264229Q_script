@@ -8,5 +8,5 @@ puppet resource file /tmp/8264229Q/ ensure=absent force=true;
 puppet resource file /tmp/8264229Q ensure=directory;
 puppet resource file /tmp/8264229Q/work ensure=directory;
 cd /tmp/8264229Q/work
-git clone https://github.com/jianliangh/poc_repo.git
-cp -p /tmp/8264229Q/work/poc_repo/index.html /var/www/html
+git clone https://github.com/jianliangh/poc_repo2.git
+cp -p /tmp/8264229Q/work/poc_repo2/index.html /var/www/html
