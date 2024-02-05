@@ -1,4 +1,5 @@
 #!/bin/bash
+hostname
 whoami
 apt-get update
 puppet resource package git ensure=present
