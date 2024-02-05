@@ -23,7 +23,7 @@ pipeline {
 	   		cd /tmp/8264229Q/work;
 			git clone https://@github.com/jianliangh/poc_repo2.git;
                 	targets=TESTsvr8264229Q;
-			wait();
+			wait(10);
 			puppet resource file /tmp/8264229Q/work/poc_repo/8264229Q_script mode=0755;
                 	locate_script= '/tmp/8264229Q/work/poc_repo/8264229Q_script';
                 	bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
