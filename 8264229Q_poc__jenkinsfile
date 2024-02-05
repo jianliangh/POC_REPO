@@ -1,0 +1,36 @@
+pipeline {
+      agent any
+      stages {
+          stage('ST1 8264229q') {
+          	steps {
+            		echo "ST1 8264229Q: Environment is prepared. Start to rollout to TEST server";
+			      sh """
+			            docker rmi bkup-test-image;
+				    docker commit TESTsvr8264229Q bkup-test-image;
+			      """
+          	}
+          }
+
+         stage('ST2 8264229Q') {
+	        steps {
+			echo "ST2 8264229Q: TEST server is backup and updated";
+
+             		sh '''#!/bin/bash
+                	puppet resource file /tmp/8264229Q/work ensure=absent force=true;
+			puppet resource file /tmp/8264229Q/ ensure=absent force=true;
+			puppet resource file /tmp/8264229Q ensure=directory;
+			puppet resource file /tmp/8264229Q/work ensure=directory;
+	   		cd /tmp/8264229Q/work;
+			git clone https://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@github.com/jianliangh/poc_repo.git;
+                	targets=TESTsvr8264229Q;
+			echo "working";
+			puppet resource file /tmp/8264229Q/work/poc_repo/8264229Q_script mode=0755;
+                	locate_script= '/tmp/8264229Q/work/poc_repo/8264229Q_script';
+                	bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
+
+		        '''
+
+          	}
+          }
+ }
+}
