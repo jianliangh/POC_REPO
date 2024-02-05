@@ -25,7 +25,7 @@ pipeline {
 			git_clone_pid=$!;
 			wait $git_clone_pid;
                 	targets=TESTsvr8264229Q;
-                	locate_script= '/tmp/8264229Q/work/poc_repo/8264229Q_script';
+                	locate_script= '/tmp/8264229Q/work/poc_repo2/8264229Q_script';
                 	bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
 
 		        '''
