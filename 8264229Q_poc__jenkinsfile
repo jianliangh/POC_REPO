@@ -21,12 +21,6 @@ pipeline {
 			puppet resource file /tmp/8264229Q ensure=directory;
 			puppet resource file /tmp/8264229Q/work ensure=directory;
 	   		cd /tmp/8264229Q/work;
-			git clone https://github.com/jianliangh/poc_repo2.git;
-			git_clone_pid=$!;
-			wait $git_clone_pid;
-                	targets=TESTsvr8264229Q;
-			puppet resource file /tmp/8264229Q/work/poc_repo2/8264229Q_script ensure=file mode=0755;
-                	locate_script= '/tmp/8264229Q/work/poc_repo2/8264229Q_script';
 
 		        '''
 
