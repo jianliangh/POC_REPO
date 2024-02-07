@@ -79,7 +79,7 @@ pipeline {
           	steps {
 			          script {
 				                if (quest == 'Proceed Production') {
-                   			  echo “ST6 8264229Q: Production server is updated”
+                   			  echo "ST6 8264229Q: Production server is updated"
                    		  } 
 
 				              else if (quest == 'RollBack Test') {
