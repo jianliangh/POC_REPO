@@ -34,13 +34,13 @@ pipeline {
           }
  	stage('ST3 8264229Q') {
           	steps {
-			            echo “ST3 8264229Q: Test result for TEST server is generated: TEST-result-file ”;
+			            echo "ST3 8264229Q: Test result for TEST server is generated: TEST-result-file";
          	        }
           }
 
           stage('ST4 8264229Q') {
 		        steps {
-			            echo “ST4 8264229Q: TEST server’s testing result has been inspected”
+			            echo "ST4 8264229Q: TEST server’s testing result has been inspected"
 			            script {
                 	quest = input ( 
                               message: 'Choice',
@@ -54,7 +54,7 @@ pipeline {
           	steps {
 			        script {
 				          if (quest == 'Proceed Production') {
-                  		echo “ST5 8264229Q: Proceed to Production Phase”
+                  		echo "ST5 8264229Q: Proceed to Production Phase"
                 			sh '''#!/bin/bash
                 			puppet resource file /tmp/8264229Q/work ensure=absent force=true;
                 			puppet resource file /tmp/8264229Q/work ensure=directory;
@@ -68,7 +68,7 @@ pipeline {
                    		} 
 
 				else if (quest == 'RollBack Test') {
-  	                		echo “ST5 8264229Q: Rollback Test server”
+  	                		echo "ST5 8264229Q: Rollback Test server"
 
                   }
 		}	      
@@ -83,7 +83,7 @@ pipeline {
                    		  } 
 
 				              else if (quest == 'RollBack Test') {
-  	            			  echo ST6 8264229Q: “TEST server is rollback”.
+  	            			  echo ST6 8264229Q: "TEST server is rollback".
                    		}
 			            }	
           	}
