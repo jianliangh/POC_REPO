@@ -83,7 +83,7 @@ pipeline {
                    		  } 
 
 				              else if (quest == 'RollBack Test') {
-  	            			  echo ST6 8264229Q: "TEST server is rollback".
+  	            			  echo "ST6 8264229Q: TEST server is rollback".
                    		}
 			            }	
           	}
