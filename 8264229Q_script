@@ -1,14 +1,12 @@
 #!/bin/bash
-hostname
-whoami
 apt-get update
-sudo puppet resource package git ensure=present
-sudo puppet resource package apache2 ensure=present
-sudo puppet resource service apache2 ensure=running
-sudo puppet resource file /tmp/8264229Q/work ensure=absent force=true;
-sudo puppet resource file /tmp/8264229Q/ ensure=absent force=true;
-sudo puppet resource file /tmp/8264229Q ensure=directory;
-sudo puppet resource file /tmp/8264229Q/work ensure=directory;
+puppet resource package git ensure=present
+puppet resource package apache2 ensure=present
+puppet resource service apache2 ensure=running
+puppet resource file /tmp/8264229Q/work ensure=absent force=true;
+puppet resource file /tmp/8264229Q/ ensure=absent force=true;
+puppet resource file /tmp/8264229Q ensure=directory;
+puppet resource file /tmp/8264229Q/work ensure=directory;
 cd /tmp/8264229Q/work
 git clone https://github.com/jianliangh/poc_repo2.git
 cp -p /tmp/8264229Q/work/poc_repo2/index.html /var/www/html
