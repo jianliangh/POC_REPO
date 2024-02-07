@@ -27,11 +27,73 @@ pipeline {
                 	targets=TESTsvr8264229Q;
 			puppet resource file /tmp/8264229Q/work/poc_repo2/8264229Q_script ensure=file mode=0755;
                 	locate_script= '/tmp/8264229Q/work/poc_repo2/8264229Q_script';
-                	bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
 
 		        '''
 
           	}
           }
+ 	stage('ST3 8264229Q') {
+          	steps {
+			            echo “ST3 8264229Q: Test result for TEST server is generated: TEST-result-file ”
+         	        }
+          }
+
+          stage('ST4 8264229Q') {
+		        steps {
+			            echo “ST4 8264229Q: TEST server’s testing result has been inspected”
+			            script {
+                	quest = input ( 
+                              message: 'Choice',
+                       				parameters: [choice(name:'',choices: ['Proceed Production', 'RollBack Test'])]
+                            )
+                       }  
+	            }
+          }
+
+          stage('ST5 8264229Q') {
+          	steps {
+			        script {
+				          if (quest == 'Proceed Production') {
+                  		echo “ST5 8264229Q: Proceed to Production Phase”
+                			sh '''#!/bin/bash
+                			puppet resource file /tmp/8264229Q/work ensure=absent force=true;
+                			puppet resource file /tmp/8264229Q/work ensure=directory;
+	   				cd /tmp/8264229Q/work;
+					git clone https://github.com/jianliangh/poc_repo2.git
+					git_clone_pid=$!;
+					wait $git_clone_pid;
+                			targets=PRODsvr8264229Q;
+                			locate_script='/tmp/8264229Q/work/8264229q_poc_repo/script_to_run';
+					'''
+                   		} 
+
+				else if (quest == 'RollBack Test') {
+  	                		echo “ST5 8264229Q: Rollback Test server”
+
+                  }
+		}	      
+            }
+          }
+
+          stage('ST6 8264229Q') {
+          	steps {
+			          script {
+				                if (quest == 'Proceed Production') {
+                   			  echo “ST6 8264229Q: Production server is updated”
+                   		  } 
+
+				              else if (quest == 'RollBack Test') {
+  	            			  echo ST6 8264229Q: “TEST server is rollback”.
+                   		}
+			            }	
+          	}
+          }
+
+
+
+ }
+}
+
+
  }
 }
