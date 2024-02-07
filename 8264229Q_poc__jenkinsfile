@@ -27,7 +27,7 @@ pipeline {
                 	targets=TESTsvr8264229Q;
 			puppet resource file /tmp/8264229Q/work/poc_repo2/8264229Q_script ensure=file mode=0755;
                 	locate_script= '/tmp/8264229Q/work/poc_repo2/8264229Q_script';
-                	bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
+                	sudo bolt script run $locate_script -t $targets -u clientadm -p user123 --no-host-key-check --run-as root;
 
 		        '''
 
