@@ -36,8 +36,7 @@ pipeline {
  	stage('ST3 8264229Q') {
           	steps {
 			            sh """
-				          curl –is http://TESTsvr8264229Q.localdomain;
-					  echo "HTTP/1.1  200 OK" > /tmp/TEST-result-file;
+				          curl –is http://TESTsvr8264229Q.localdomain|HEAD -n 1  > /tmp/TEST-result-file;
 				          cat /tmp/TEST-result-file;
 			            """
 			           echo "ST3 8264229Q: Test result for TEST server is generated: TEST-result-file";
@@ -76,8 +75,8 @@ pipeline {
 
 				else if (quest == 'RollBack Test') {
 			          sh """
-				        docker rm -f TESTsvr8264229Q2;
-					docker run -d --network customnetwork2 --privileged -h TESTsvr8264229Q2.localdomain --name TESTsvr8264229Q2 --add-host=sddo-vm.localdomain:172.20.113.64 --ip=192.168.20.110 bkup-test-image /sbin/init
+				        docker rm -f TESTsvr8264229Q;
+					docker run -d --network customnetwork --privileged -h TESTsvr8264229Q2.localdomain --name TESTsvr8264229Q --add-host=sddo-vm.localdomain:172.20.113.64 --ip=192.168.20.100 bkup-test-image /sbin/init
 
 			          """
   	                	  echo "ST5 8264229Q: Rollback Test server"
