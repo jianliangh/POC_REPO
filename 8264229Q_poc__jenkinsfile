@@ -4,16 +4,15 @@ pipeline {
           stage('ST1 8264229q') {
           	steps {
             		echo "ST1 8264229Q: Environment is prepared. Start to rollout to TEST server";
-			      sh """
-			            docker rmi -f bkup-test-image;
-				    docker commit TESTsvr8264229Q bkup-test-image;
-			      """
           	}
           }
 
          stage('ST2 8264229Q') {
 	        steps {
-			echo "ST2 8264229Q: TEST server is backup and updated";
+			sh """
+			docker rmi -f bkup-test-image;
+			docker commit TESTsvr8264229Q bkup-test-image;
+			"""
 
              		sh '''#!/bin/bash
                 	puppet resource file /tmp/8264229Q/work ensure=absent force=true;
@@ -21,16 +20,16 @@ pipeline {
 			puppet resource file /tmp/8264229Q ensure=directory;
 			puppet resource file /tmp/8264229Q/work ensure=directory;
 	   		cd /tmp/8264229Q/work;
-
 		        '''
+
+			echo "ST2 8264229Q: TEST server is backup and updated";
 
           	}
           }
  	stage('ST3 8264229Q') {
           	steps {
 			            sh """
-				          curl –Is http://TESTsvr8264229Q.localdomain;
-					  echo "HTTP/1.1 200 OK" > /tmp/TEST-result-result;
+				          curl –is http://TESTsvr8264229Q.localdomain;
 				          cat /tmp/TEST-result-result;
 			            """
 			           echo "ST3 8264229Q: Test result for TEST server is generated: TEST-result-file";
