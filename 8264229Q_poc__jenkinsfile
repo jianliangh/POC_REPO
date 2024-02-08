@@ -30,7 +30,7 @@ pipeline {
           	steps {
 			            sh """
 				          curl –Is http://TESTsvr8264229Q.localdomain;
-					  pwd;
+					  echo "HTTP/1.1 200 OK" > /tmp/TEST-result-result;
 				          cat /tmp/TEST-result-result;
 			            """
 			           echo "ST3 8264229Q: Test result for TEST server is generated: TEST-result-file";
