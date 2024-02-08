@@ -29,7 +29,7 @@ pipeline {
  	stage('ST3 8264229Q') {
           	steps {
 			            sh """
-				          curl –is http://TESTsvr8264229Q.localdomain;
+				          curl –Is http://TESTsvr8264229Q.localdomain;
 					  pwd;
 				          cat /tmp/TEST-result-result;
 			            """
