@@ -5,7 +5,7 @@ pipeline {
           	steps {
             		echo "ST1 8264229Q: Environment is prepared. Start to rollout to TEST server";
 			      sh """
-			            docker rmi bkup-test-image;
+			            docker rmi -f bkup-test-image;
 				    docker commit TESTsvr8264229Q bkup-test-image;
 			      """
           	}
