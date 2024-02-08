@@ -9,4 +9,4 @@ puppet resource file /tmp/8264229Q ensure=directory;
 puppet resource file /tmp/8264229Q/work ensure=directory;
 cd /tmp/8264229Q/work
 git clone https://github.com/jianliangh/poc_repo2.git
-cp -p /tmp/8264229Q/work/poc_repo2/index.html /var/www/html
+cp -p /tmp/8264229Q/work/poc_repo2/8264229Q_index.html /var/www/html/index.html
