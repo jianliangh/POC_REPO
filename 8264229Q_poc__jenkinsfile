@@ -76,7 +76,8 @@ pipeline {
 				else if (quest == 'RollBack Test') {
 			          sh """
 				        docker rm -f TESTsvr8264229Q;
-					docker run -d --network customnetwork --privileged -h TESTsvr8264229Q2.localdomain --name TESTsvr8264229Q --add-host=sddo-vm.localdomain:172.20.113.64 --ip=192.168.20.100 bkup-test-image /sbin/init
+					docker run -d --network customnetwork --privileged -h TESTsvr8264229Q2.localdomain --name TESTsvr8264229Q 
+                                        --add-host=sddo-vm.localdomain:172.20.113.64 --ip=192.168.20.100 bkup-test-image /sbin/init;
 
 			          """
   	                	  echo "ST5 8264229Q: Rollback Test server"
